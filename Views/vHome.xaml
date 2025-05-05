@@ -44,13 +44,22 @@
                     <DataTemplate>
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
-                            <Label Text="{Binding Id}"
-                                   Grid.Column="0"/>
-                            <Label Text="{Binding Name}"
-                                   Grid.Column="1"/>
+
+                            <Label Text="{Binding Id}" Grid.Column="0"/>
+                            <Label Text="{Binding Name}" Grid.Column="1"/>
+                            <Button Text="Editar"
+                                    Grid.Column="2"
+                                    Clicked="OnEditarClicked"
+                                    CommandParameter="{Binding}" />
+                            <Button Text="Eliminar"
+                                    Grid.Column="3"
+                                    Clicked="OnEliminarClicked"
+                                    CommandParameter="{Binding}" />
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>

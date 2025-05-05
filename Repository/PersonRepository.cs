@@ -62,6 +62,43 @@ namespace glopezS5A.Repository
             }
             return new List<Persona>();
         }
-        
+
+        public void UpdatePerson(int id, string name)
+        {
+            try
+            {
+                Init();
+                var persona = conn.Table<Persona>().FirstOrDefault(p => p.Id == id);
+                if (persona == null)
+                    throw new Exception("Persona no encontrada");
+
+                persona.Name = name;
+                conn.Update(persona);
+                statusMessage = "Persona actualizada";
+            }
+            catch (Exception ex)
+            {
+                statusMessage = "ERROR: " + ex.Message;
+            }
+        }
+
+        public void DeletePerson(int id)
+        {
+            try
+            {
+                Init();
+                var persona = conn.Table<Persona>().FirstOrDefault(p => p.Id == id);
+                if (persona == null)
+                    throw new Exception("Persona no encontrada");
+
+                conn.Delete(persona);
+                statusMessage = "Persona eliminada";
+            }
+            catch (Exception ex)
+            {
+                statusMessage = "ERROR: " + ex.Message;
+            }
+        }
+
     }
 }
